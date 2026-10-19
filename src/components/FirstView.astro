@@ -1,0 +1,12 @@
+---
+const pcImage = '/images/fv-1440.jpg';
+const spImage = '/images/fv-390.jpg';
+const altText = 'The clallenger of the deep - 深淵に挑むものへ | PUG HEUER';
+---
+<section class="relative w-full overflow-hidden">
+  <picture class="block w-full">
+    <source media="(max-width:767px )" srcset={spImage}>
+    <source media="(min-width: 768px)" srcset={pcImage}>
+    <img src={pcImage} alt={altText} class="w-full h-auto object-cover block" loading="eager" decoding="async">
+  </picture>
+</section>
