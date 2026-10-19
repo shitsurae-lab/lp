@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Shippori+Mincho&display=swap');
+@import 'tailwindcss';
+
+/* 2. Tailwindのカスタムテーマとしてフォントファミリーを登録 */
+@theme {
+  --font-serif: 'Shippori Mincho', serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+
+/* ページ全体の基本スタイル */
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100dvh; /* スマホのアドレスバー開閉でも表示が崩れない全高指定 */
+}
