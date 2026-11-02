@@ -1,0 +1,109 @@
+---
+import Container from "./Container.astro";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+//仕様比較データ
+const specData = [
+  {
+    label: "搭載モデル",
+    model1: "DBGX520",
+    model2: "DBAX520",
+    model3: "DBFX520",
+  },
+  {
+    label: "ムーブメント",
+    model1: "キャリパー9W90",
+    model2: "キャリパー9Y90",
+    model3: "キャリパー9Y90",
+  },
+  {
+    label: "巻き上げ方式",
+    model1: "手巻き",
+    model2: "自動巻き（手巻き付）",
+    model3: "自動巻き（手巻き付）",
+  },
+  {
+    label: "精度",
+    model1: "平均月差±15秒",
+    model2: "平均月差±10秒",
+    model3: "平均月差±10秒",
+  },
+  {
+    label: "持続時間（最大巻上時）",
+    model1: "約72時間（約3日間）",
+    model2: "約72時間（約3日間）",
+    model3: "約72時間（約3日間）",
+  },
+  { label: "石数", model1: "35石", model2: "35石", model3: "35石" },
+  {
+    label: "その他",
+    model1: "ソリッドバック",
+    model2: "シースルーバック",
+    model3: "シースルーバック",
+  },
+];
+---
+
+<section class="w-full text-gray-900 py-16 md:py-24">
+  <Container size="slim">
+    <!-- セクションタイトルエリア -->
+    <div class="text-center mb-12 md:mb-20">
+      <span class="text-xs tracking-[0.2em] font-medium text-gray-800 uppercase mb-1 font-montserrat">
+        Movement
+      </span>
+      <h2 class="text-lg md:text-xl font-serif tracking-wider leading-relaxed">
+        ムーブメント仕様
+      </h2>
+    </div>
+    <!-- shadcn/ui Table を囲むコンテナ（カード風デザイン ＆ 横スクロール対応） -->
+    <div class="w-full bg-white rounded-lg border border-gray-200/80 shadow-sm overflow-x-auto">
+      <!-- PCでは100%幅でフィット、SPでは最小580pxを確保して横スクロールさせる -->
+      <Table className="min-w-[580px] md:min-w-full text-xs md:text-sm">
+        <!-- ヘッダー行 -->
+        <TableHeader className="bg-gray-100/80">
+          <TableRow className="hover:bg-transparent border-gray-200">
+            <TableHead className="w-1/4 text-center text-gray-700 font-medium py-4">
+              搭載モデル
+            </TableHead>
+            <TableHead className="w-1/4 text-center text-gray-900 font-semibold py-4">
+              {specData[0].model1}
+            </TableHead>
+            <TableHead className="w-1/4 text-center text-gray-900 font-semibold py-4">
+              {specData[0].model2}
+            </TableHead>
+            <TableHead className="w-1/4 text-center text-gray-900 font-semibold py-4">
+              {specData[0].model3}
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+
+        <!-- ボディ（各仕様データ） -->
+        <TableBody>
+          {specData.slice(1).map((row) => (
+            <TableRow className="hover:bg-gray-50/80 border-gray-200/70 transition-colors">
+              <TableCell className="font-normal text-gray-600 bg-gray-50/40 md:bg-transparent text-center py-3.5">
+                {row.label}
+              </TableCell>
+              <TableCell className="text-gray-900 text-center py-3.5">
+                {row.model1}
+              </TableCell>
+              <TableCell className="text-gray-900 text-center py-3.5">
+                {row.model2}
+              </TableCell>
+              <TableCell className="text-gray-900 text-center py-3.5">
+                {row.model3}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  </Container>
+</section>
