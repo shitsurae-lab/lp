@@ -1,0 +1,23 @@
+---
+// コンテンツ幅を揃えるためのUIコンポーネント（呼び出され側：子コンポーネント）
+type Props = {
+  className?: string;
+  size?: "default" | "slim" | "full";
+};
+// 親コンポーネントからの渡り値（Defaults: size="default", className=""）
+const { className = "", size = "default" } = Astro.props;
+
+// PC表示時の最大幅設定（ブレイクポイント: md 768px〜）
+const sizeClasses = {
+  default: "md:max-w-[1080px]",
+  slim: "md:max-w-[960px]",
+  full: "md:max-w-[full]",
+};
+---
+
+<div
+  class={`max-w-[390px] ${sizeClasses[size]} mx-auto px-[15px] md:px-0 ${className}`}
+>
+  {/* 子要素（スロット）の挿入位置 */}
+  <slot />
+</div>
