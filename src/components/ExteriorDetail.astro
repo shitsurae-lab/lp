@@ -1,0 +1,80 @@
+---
+import BubbleOverlay from "./BubbleOverlay.astro";
+import Container from "./Container.astro";
+
+//背景画像と商品画像
+const bgSP = "/images/exterior-detail--sp.webp";
+const bgPC = "/images/exterior-detail@2x.webp";
+const watchSP = "/images/bucciarati-watch2-rotation-top.webp";
+const watchPC = "/images/bucciarati-rotation-left-half@2x.webp";
+const altText = "ジルコニア・セラミックスの特性を最大限に活かした外装デザイン";
+---
+
+<section class="relative w-full min-h-[892px] md:min-h-[820px] flex items-start py-20 text-slate-300 overflow-hidden">
+  <picture class="absolute inset-0 w-full h-full z-0">
+    <source media="(max-width: 767px)" srcset={bgSP} />
+    <source media="(min-width: 768px)" srcset={bgPC} />
+    <img
+      src={bgPC}
+      alt=""
+      class="w-full h-full object-cover block"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+  <!-- 1. 泡のエフェクトレイヤー（中間: z-15 ※BubbleOverlayを使う場合） -->
+  <BubbleOverlay />
+
+  <!-- 3. コンテンツ領域（<Container />でコンテンツ幅を制御） -->
+  <Container className="relative z-20 w-full max-w-270 mx-auto">
+    <!-- キャッチコピー + 中見出し -->
+    <div class="text-center mb-16">
+      <span class="text-xs tracking-[0.2em] font-montserrat uppercase mb-1">
+        CRAFTING THE EXTERIOR
+      </span>
+      <h2 class="text-lg md:text-xl font-serif tracking-wider leading-relaxed">
+        ジルコニア・セラミックスの特性を
+        <br class="block md:hidden" />
+        最大限に活かした外装デザイン
+      </h2>
+    </div>
+    <!-- 2カラムコンテンツ（SP: 上画像/下テキスト、PC：左画像/右テキスト） -->
+    <div class="flex flex-col md:flex-row flex-cols-1 md:flex-cols-2 items-center md:justify-between gap-10 md:gap-40">
+      <!-- 時計画像（pictureで切り替え） -->
+      <div class="grid place-items-center w-full max-w-[360px] md:max-w-[270px] max-h-[148px] md:max-h-[540px] overflow-hidden">
+        <picture>
+          <source media="(max-width: 767px)" srcset={watchSP} />
+          <source media="(min-width: 768px)" srcset={watchPC} />
+          <img
+            src={watchPC}
+            alt={altText}
+            class="w-full h-auto object-cover block"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
+      <!-- 説明テキスト -->
+      <div class="flex flex-col gap-16 w-full max-w-[360px] md:max-w-[650px]">
+        <!-- 説明① -->
+        <div class="flex flex-col">
+          <h3 class="text-lg font-serif tracking-wide leading-relaxed mb-3 md:mb-4">
+            ケース
+          </h3>
+          <p class="text-sm font-serif tracking-wide leading-relaxed">
+            研ぎ澄まされたダイナミックなシルエットのケースは、高硬度セラミックスと軽量チタンの複合構造という素材の特性を最大限に活かしながら、ブランドが長年培ってきたアバンギャルドなデザイン精神をもとに導き出したデザインです。レーシングカーを彷彿とさせる力強い立体感と洗練された光の陰影を実現しています。
+          </p>
+        </div>
+        <!-- 説明② -->
+        <div class="flex flex-col gap-[14px]">
+          <h3 class="text-lg font-serif tracking-wide leading-normal">
+            ブレスレット
+          </h3>
+          <p class="text-sm font-serif tracking-wide leading-relaxed">
+            ブレスレットの中心の列にあたるジルコニア・セラミックス製のパーツを両脇のブライトチタン製のパーツよりも厚くすることで、異素材の組み合わせを際立たせるとともに、ブレスレットが固いものに接触した際にも、より硬いセラミックス製のパーツがブライトチタン製のパーツを守る効果を生み出します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
