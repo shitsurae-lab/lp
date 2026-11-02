@@ -1,10 +1,16 @@
 ---
-const logoImg = '/images/logo.png';
+const logoImg = "/images/svg/logo-vector-natural.svg";
+const logoAlt = "PUG HEUER AQUARACER";
 ---
-<header class="absolute top-0 left-0 z-20 w-full p-6 md:p-8">
-  <div class="max-w-7xl mx-auto flex items-between">
+
+<header class="absolute top-0 left-0 z-20 w-full p-4">
+  <h1 class="w-full flex items-between">
     <a href="/" class="inline-block">
-    <img src={logoImg} alt="Collections Logo" class="w-20 h-10 md:w-80 md:h-40 object-contain">
+      <img
+        src={logoImg}
+        alt={logoAlt}
+        class="w-20 h-10 md:w-30 md:h-15 object-cover"
+      />
     </a>
-  </div>
+  </h1>
 </header>
