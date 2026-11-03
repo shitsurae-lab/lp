@@ -28,7 +28,10 @@ const backImage = "/images/pugheuer-back.webp";
   <!-- ② 海中の画像 ＆ コンテンツエリア（①の下に連続してスタート） -->
   <div class="relative w-full h-full flex flex-col justify-between">
     <!-- 海中の背景画像（<picture>でPC/SP切り替え） -->
-    <picture class="absolute inset-0 w-full h-full -z-10">
+    <picture
+      class="rellax absolute inset-0 w-full h-full -z-10"
+      data-rellax-speed="-1.5"
+    >
       <source media="(max-width: 767px)" srcset={bgSp} />
       <source media="(min-width: 768px)" srcset={bgPc} />
       <img
@@ -57,8 +60,11 @@ const backImage = "/images/pugheuer-back.webp";
       <!-- 限定モデル詳細コンテンツ -->
       <div class="flex flex-col gap-40 md:gap-10">
         <!-- BLOCK 1: 表文字盤 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-10 md:gap-0">
-          <div class="order-1 md:order-1 flex justify-center items-center">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] items-center gap-10 md:gap-20">
+          <div
+            class="rellax order-1 md:order-1 flex justify-center items-center"
+            data-rellax-speed="2"
+          >
             <img
               src={faceImage}
               alt="アイコニックな「A」のモノグラムとディープパープルダイヤル"
@@ -88,8 +94,11 @@ const backImage = "/images/pugheuer-back.webp";
         </div>
 
         <!-- BLOCK 2: シースルー裏蓋 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-10 md:gap-0">
-          <div class="order-1 md:order-2 flex justify-center items-center">
+        <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] items-center gap-10 md:gap-20">
+          <div
+            class="rellax order-1 md:order-2 flex justify-center items-center"
+            data-rellax-speed="2"
+          >
             <img
               src={backImage}
               alt="神秘的なグラフィックが浮かび上がるシースルーバック"
