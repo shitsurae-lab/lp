@@ -7,6 +7,30 @@ dist/
 # dependencies
 node_modules/
 
+# =========================================================================
+# デザイン生データ & 自動生成されたWebP画像
+# =========================================================================
+
+# 0.
+# 1. Photoshop / Illustrator の重い生データを除外
+design-assets/**/*.psd
+design-assets/**/*.ai
+
+# 2. Illustrator等の作業用書き出しフォルダ（1x, 2x, SVG）を除外
+design-assets/**/1x/
+design-assets/**/2x/
+design-assets/**/SVG/
+design-assets/imaginary-lp/illustrator/
+
+# 3. sync-images.mjs によって自動生成される WebP 画像を除外（※ public/images/*.svg は手動配置の本番素材なので Git 管理対象）
+public/images/*.webp
+
+# 4. Photoshopで自動に生成された画像を手動でwebpにした画像
+design-assets/**/optimized/
+
+#  OS独自の隠しファイル
+**/.DS_Store
+
 # logs
 npm-debug.log*
 yarn-debug.log*
@@ -17,8 +41,7 @@ pnpm-debug.log*
 .env
 .env.production
 
-# macOS-specific files
-.DS_Store
+
 
 # jetbrains setting folder
 .idea/
