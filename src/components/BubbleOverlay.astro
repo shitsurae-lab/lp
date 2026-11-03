@@ -1,0 +1,102 @@
+---
+// src/components/BubbleOverlay.astro
+---
+
+<!-- 泡を動的に生成・配置する専用の絶対配置レイヤー -->
+<div class="bubble-container absolute inset-0 overflow-hidden pointer-events-none z-15"></div>
+
+<style>
+  /* 泡の見た目 */
+  :global(.bubble) {
+    position: absolute;
+    bottom: -50px;
+    background-color: transparent;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+    animation: bubbleUp 8s linear infinite;
+  }
+
+  /* 泡の一番明るい反射部分 */
+  :global(.bubble::before) {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: scale(0.25) translate(-70%, -70%);
+    background: radial-gradient(rgba(255, 255, 255, 0.8), transparent);
+    border-radius: 50%;
+  }
+
+  /* 浮き上がりアニメーション */
+  @keyframes bubbleUp {
+    0% {
+      transform: translateY(0);
+      opacity: 0.8;
+    }
+    99% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(calc(-180vh));
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // コンテナを取得
+    const containers = document.querySelectorAll(".bubble-container");
+
+    containers.forEach((container) => {
+      let activeBubble: number | null = null;
+
+      const createBubble = () => {
+        const bubbleEl = document.createElement("span");
+        bubbleEl.className = "bubble";
+
+        const minSize = 8;
+        const maxSize = 16;
+        const size = Math.random() * (maxSize - minSize) + minSize;
+
+        bubbleEl.style.width = `${size}px`;
+        bubbleEl.style.height = `${size}px`;
+        // 親要素の幅に合わせてランダム配置（0%〜100%）
+        bubbleEl.style.left = `${Math.random() * 100}%`;
+
+        container.appendChild(bubbleEl);
+
+        // 8秒後に自動削除
+        setTimeout(() => {
+          bubbleEl.remove();
+        }, 8000);
+      };
+
+      const stopBubble = () => {
+        if (activeBubble !== null) {
+          clearInterval(activeBubble);
+          activeBubble = null;
+        }
+      };
+
+      // 画面内に入った時だけ泡を生成
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (activeBubble === null) {
+                activeBubble = window.setInterval(createBubble, 350);
+              }
+            } else {
+              stopBubble();
+            }
+          });
+        },
+        { rootMargin: "100px 0px" },
+      );
+
+      observer.observe(container);
+    });
+  });
+</script>
