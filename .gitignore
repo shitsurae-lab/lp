@@ -22,6 +22,9 @@ design-assets/**/2x/
 design-assets/**/SVG/
 design-assets/imaginary-lp/illustrator/
 
+# 3. 背景画像について元のバージョンを保存
+design-assets/imaginary-lp/deepsea-assets/version/
+
 # 3. sync-images.mjs によって自動生成される WebP 画像を除外（※ public/images/*.svg は手動配置の本番素材なので Git 管理対象）
 public/images/*.webp
 
