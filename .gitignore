@@ -25,10 +25,13 @@ design-assets/imaginary-lp/illustrator/
 # 3. 背景画像について元のバージョンを保存
 design-assets/imaginary-lp/deepsea-assets/version/
 
-# 3. sync-images.mjs によって自動生成される WebP 画像を除外（※ public/images/*.svg は手動配置の本番素材なので Git 管理対象）
+# 4. 参照画像
+design-assets/imaginary-lp/not-converted-assets/
+
+# 5. sync-images.mjs によって自動生成される WebP 画像を除外（※ public/images/*.svg は手動配置の本番素材なので Git 管理対象）
 public/images/*.webp
 
-# 4. Photoshopで自動に生成された画像を手動でwebpにした画像
+# 6. Photoshopで自動に生成された画像を手動でwebpにした画像
 design-assets/**/optimized/
 
 #  OS独自の隠しファイル
